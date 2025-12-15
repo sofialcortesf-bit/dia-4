@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrando Nuestro Mes ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            color: #5a3d5c;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Encabezado */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff4d8d;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart-icon {
+            color: #ff4d8d;
+            animation: heartbeat 1.5s infinite;
+            margin: 0 10px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #6d466b;
+        }
+
+        /* Contador */
+        .counter {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .counter-title {
+            font-size: 1.8rem;
+            color: #ff4d8d;
+            margin-bottom: 15px;
+        }
+
+        .time-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+
+        .time-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #6d466b;
+        }
+
+        .time-label {
+            font-size: 1rem;
+            color: #5a3d5c;
+        }
+
+        /* Galería */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .photo-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: white;
+            height: 300px;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            padding: 15px;
+            text-align: center;
+            background: white;
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Carta de amor */
+        .love-letter {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ffafbd;
+            padding-bottom: 10px;
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 20px;
+            color: #ff4d8d;
+            font-weight: bold;
+        }
+
+        /* Botón especial */
+        .special-btn {
+            display: block;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #ff4d8d, #ff7bac);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 77, 141, 0.4);
+        }
+
+        .special-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 77, 141, 0.6);
+        }
+
+        /* Sorpresa de corazones */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4d8d;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .time-container {
+                gap: 10px;
+            }
+            
+            .time-box {
+                min-width: 80px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Encabezado principal -->
+        <header class="fade-in">
+            <h1>¡Feliz Mes <i class="fas fa-heart heart-icon"></i>!</h1>
+            <p class="subtitle">Conocerte ha sido el mejor regalo que me ha dado la vida</p>
+            <p>Hoy celebramos un mes más de amarnos, apoyarnos en momentos dificiles y compartir muchos momentos hermosos juntos</p>
+        </header>
+
+        <!-- Contador de tiempo juntos -->
+        <section class="counter fade-in">
+            <h2 class="counter-title">Nuestro tiempo juntos</h2>
+            <div class="time-container">
+                <div class="time-box">
+                    <div class="time-number" id="months">1</div>
+                    <div class="time-label">MESES</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-number" id="days">30</div>
+                    <div class="time-label">DÍAS</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-number" id="hours">720</div>
+                    <div class="time-label">HORAS</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-number" id="minutes">43200</div>
+                    <div class="time-label">MINUTOS</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-style: italic;">Y contando...</p>
+        </section>
+
+        <!-- Galería de momentos -->
+        <section class="gallery-section slide-in">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #ff4d8d;">Nuestros Momentos</h2>
+            <div class="gallery">
+                <!-- Puedes reemplazar estas imágenes con tus fotos -->
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Momento especial">
+                    <div class="photo-caption">Nuestra primera cita ❤️</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Risa juntos">
+                    <div class="photo-caption">Risas compartidas 😄</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Aventura">
+                    <div class="photo-caption">Nuestras aventuras 🗺️</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Complicidad">
+                    <div class="photo-caption">Complicidad eterna ✨</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carta de amor -->
+        <section class="love-letter fade-in">
+            <div class="letter-header">
+                <h2 style="color: #ff4d8d;">Para mi amor</h2>
+                <i class="fas fa-heart" style="color: #ff4d8d; font-size: 1.5rem;"></i>
+            </div>
+            <div class="letter-content">
+                <p>Mi vida,</p>
+                <p>El dia de hoy, 15/12/2025, celebramos un mes más de estar juntos. Cada día que pasa me siento mas segura de que tu eres el amor de mi vida, quiero que sepas que me siento muy afortunado de tenerte en mi vida.</p>
+                <p>Hemos vivido muchisimas cosas juntaos, tu me conoces mas que nadie y eres en quien mas confio. Eres mi confidente, mi apoyo, y una razón por la que me levanto cada mañana.</p>
+                <p>El tiempo que ha pasado desde que te conozco ha sido el mas bonito y aun nos quedan muchisimas cosas por vivir.</p>
+                <p>Gracias por ser tú, por amarme tal como soy, por apoyarme y estar conmigo, te amo con todo mi ser.</p>
+                <div class="letter-signature">
+                    <p>Con muchisimo amor,</p>
+                    <p id="partner-name">[Sofia]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botón especial con sorpresa -->
+        <button class="special-btn" id="surprise-btn">
+            <i class="fas fa-gift"></i> Haz clic para una sorpresa <i class="fas fa-gift"></i>
+        </button>
+    </div>
+
+    <script>
+        // Actualizar contador (puedes cambiar la fecha de inicio)
+        const startDate = new Date("2023-09-15"); // Cambia esta fecha por tu fecha de inicio
+        
+        function updateCounter() {
+            const now = new Date();
+            const diffTime = Math.abs(now - startDate);
+            
+            // Cálculos
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const months = Math.floor(diffDays / 30);
+            const days = diffDays % 30;
+            const hours = diffDays * 24;
+            const minutes = hours * 60;
+            
+            // Actualizar elementos
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        }
+        
+        // Actualizar cada minuto
+        updateCounter();
+        setInterval(updateCounter, 60000);
+        
+        // Sorpresa de corazones
+        document.getElementById('surprise-btn').addEventListener('click', function() {
+            // Crear corazones
+            for (let i = 0; i < 50; i++) {
+                createHeart();
+            }
+            
+            // Mensaje de alerta dulce
+            const messages = [
+                "¡Cada dia te amo mas!",
+                "Eres lo mejor que me ha pasado ❤️",
+                "Cada momento que pasamos juntos es lo mas bonito",
+                "Estoy profundamente enamorada de ti",
+                "Eres el amor de mi vida",
+                "Gracias por existir y por amarme"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+            
+            // Cambiar el nombre en la carta (puedes personalizarlo)
+            document.getElementById('partner-name').textContent = "Sofi C❤️";
+            this.innerHTML = '<i class="fas fa-heart"></i> ¡Soy muy afortunada de tenerte! <i class="fas fa-heart"></i>';
+            this.style.background = 'linear-gradient(135deg, #6d466b, #b49fcc)';
+        });
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            
+            // Posición aleatoria
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            document.body.appendChild(heart);
+            
+            // Animación
+            const animationDuration = Math.random() * 3 + 2;
+            heart.style.animation = `fall ${animationDuration}s linear forwards`;
+            
+            // Crear keyframes para la animación
+            const styleSheet = document.createElement('style');
+            styleSheet.innerHTML = `
+                @keyframes fall {
+                    0% {
+                        transform: translateY(-100px) rotate(0deg);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateY(100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+            
+            // Eliminar después de la animación
+            setTimeout(() => {
+                heart.remove();
+                styleSheet.remove();
+            }, animationDuration * 1000);
+        }
+        
+        // Efecto de escritura en el título
+        const title = document.querySelector('h1');
+        const originalText = title.innerHTML;
+        title.innerHTML = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                title.innerHTML += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // Iniciar efecto después de cargar la página
+        setTimeout(typeWriter, 500);
+        
+        // Personalización: Cambia el nombre en la carta
+        // Puedes pedir el nombre al cargar la página:
+        // const userName = prompt("¿Cuál es tu nombre? (Para personalizar la carta)");
+        // if(userName) {
+        //     document.getElementById('partner-name').textContent = userName;
+        // }
+    </script>
+</body>
+</html>
